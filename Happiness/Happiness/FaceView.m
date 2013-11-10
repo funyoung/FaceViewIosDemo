@@ -123,4 +123,17 @@
     CGContextStrokePath(context);
     UIGraphicsPopContext();
 }
+
+- (void)saveViewContentToAlbum
+{
+    UIGraphicsBeginImageContext(self.bounds.size);
+    
+    [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    UIImageWriteToSavedPhotosAlbum(viewImage, nil, nil, nil);
+}
 @end
